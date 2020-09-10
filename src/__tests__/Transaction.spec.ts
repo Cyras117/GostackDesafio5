@@ -13,17 +13,17 @@ let connection: Connection;
 describe('Transaction', () => {
   beforeAll(async () => {
     connection = await createConnection('test-connection');
-    
+
     await connection.query('DROP TABLE IF EXISTS transactions');
-    await connection.query('DROP TABLE IF EXISTS categories');
+    await connection.query('DROP TABLE IF EXISTS tag');
     await connection.query('DROP TABLE IF EXISTS migrations');
-    
+
     await connection.runMigrations();
   });
 
   beforeEach(async () => {
     await connection.query('DELETE FROM transactions');
-    await connection.query('DELETE FROM categories');
+    await connection.query('DELETE FROM tag');
   });
 
   afterAll(async () => {
@@ -56,7 +56,6 @@ describe('Transaction', () => {
     });
 
     const response = await request(app).get('/transactions');
-
     expect(response.body.transactions).toHaveLength(3);
     expect(response.body.balance).toMatchObject({
       income: 8000,
@@ -192,7 +191,6 @@ describe('Transaction', () => {
     await request(app).delete(`/transactions/${response.body.id}`);
 
     const transaction = await transactionsRepository.findOne(response.body.id);
-
     expect(transaction).toBeFalsy();
   });
 
