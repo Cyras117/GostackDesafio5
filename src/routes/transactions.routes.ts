@@ -25,7 +25,7 @@ transactionsRouter.post('/', async (request, response) => {
     title,
     type,
     value,
-    tag:category
+    category
   });
   return response.json(newTransaction);
 });

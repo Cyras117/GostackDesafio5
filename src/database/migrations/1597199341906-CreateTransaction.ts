@@ -44,7 +44,7 @@ export class CreateTransaction1597199341906 implements MigrationInterface {
           name:'tags',
           columnNames:['tag_id'],
           referencedColumnNames:['id'],
-          referencedTableName:'tag',
+          referencedTableName:'categories',
           onDelete:'SET NULL',
           onUpdate:'CASCADE'
         })

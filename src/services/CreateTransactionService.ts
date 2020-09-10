@@ -9,11 +9,11 @@ interface Request{
   title: string;
   type: 'income'|'outcome';
   value:number;
-  tag: string;
+  category: string;
 }
 
 class CreateTransactionService {
-  public async execute({title,type,value,tag}:Request): Promise<Transaction> {
+  public async execute({title,type,value,category}:Request): Promise<Transaction> {
     const transactionsRepo = getCustomRepository(TransactionsRepository);
     const balance  = await transactionsRepo.getBalance();
 
@@ -23,7 +23,7 @@ class CreateTransactionService {
 
     const createTag = new CreateTagService();
 
-    const dtag = await createTag.execute(tag);
+    const dtag = await createTag.execute(category);
 
     const transaction = transactionsRepo.create({title,type,value,tag_id:dtag});
     await transactionsRepo.save(transaction);

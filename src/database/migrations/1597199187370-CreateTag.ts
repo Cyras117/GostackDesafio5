@@ -5,7 +5,7 @@ export class CreateTag1597199187370 implements MigrationInterface {
     public async up(queryRunner: QueryRunner): Promise<any> {
       await queryRunner.createTable(
         new Table({
-          name:'tag',
+          name:'categories',
           columns:[{
             name:'id',
             type:'uuid',
@@ -29,7 +29,7 @@ export class CreateTag1597199187370 implements MigrationInterface {
     }
 
     public async down(queryRunner: QueryRunner): Promise<any> {
-      await queryRunner.dropTable('tag');
+      await queryRunner.dropTable('categories');
     }
 
 }

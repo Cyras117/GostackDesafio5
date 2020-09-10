@@ -8,7 +8,7 @@ import{
   JoinColumn
 }from 'typeorm';
 
-import tag from './Category';
+import Category from './Category';
 
 @Entity('transactions')
 class Transaction {
@@ -27,9 +27,9 @@ class Transaction {
   @Column('uuid')
   tag_id: string;
 
-  @ManyToOne(()=> tag)
+  @ManyToOne(()=> Category)
   @JoinColumn({name:'tag_id'})
-  tag:tag;
+  Category:Category;
 
   @CreateDateColumn()
   created_at: Date;
